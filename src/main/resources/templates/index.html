@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="/http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ginklų katalogas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<p th:text="'Sveiki ' + ${name} + '!'"/>
+<div class="page-header">
+    <div align="center">
+        <h1>Ginklų katalogas
+            <large></large>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <p th:text="'                                                          '"/>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    Naršyti pagal paskirtį
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a th:href="${T(ginklai.Application).PURPOSE_HUNTING}">Medžioklei</a></li>
+                    <li><a th:href="${T(ginklai.Application).PURPOSE_SELF_DEFENCE}">Savigynai</a></li>
+                    <li><a th:href="${T(ginklai.Application).PURPOSE_TARGETS}">Taikinių šaudymui</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    Naršyti pagal ginklo tipą
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li><a th:href="${T(ginklai.Application).TYPE_GRAIZTVINIAI}">Graižtviniai šautuvai</a></li>
+                    <li><a th:href="${T(ginklai.Application).TYPE_PISTOLETAI}">Pistoletai</a></li>
+                    <li><a th:href="${T(ginklai.Application).TYPE_LYGIAVAMZDZIAI}">Lygiavamzdžiai šautuvai</a></li>
+                    <li><a th:href="${T(ginklai.Application).TYPE_PNEUMATINIAI}">Pneumatiniai šautuvai</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-1"/>
+        <div class="col-6">
+            <div class="jumbotron">
+                <div align="center">
+                    <h1><font size="5">Čia galite peržvelgti visą turimą ginklų asortimentą</font></h1>
+                </div>
+                <p></p>
+                <div align="center">
+                    <p><a class="btn btn-primary btn-lg" th:href="${T(ginklai.Application).WEAPONS}" role="button">Naršyti
+                        visą
+                        katalogą</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <font size="5">Ginklų parinkimas pagal kriterijus</font></h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/table_selection}" method="get">
+                        <p th:text="'Nurodykite ginklo paskirtį'"/>
+                        <p>
+                            <input type="checkbox" aria-label="medzioklei" name="hunting"/>
+                            <span class="label label-default">  Medžioklei</span>
+                        </p>
+                        <p>
+                            <input type="checkbox" aria-label="savigynai" name="self_defence"/>
+                            <span class="label label-default">  Savigynai</span>
+                        </p>
+                        <p><input type="checkbox" aria-label="taikiniams"/><span
+                                class="label label-default">  Taikiniams</span></p>
+                        <p th:text="'Nurodykite ginklo tipą'"/>
+                        <p><input type="checkbox" aria-label="pistoletas"/><span
+                                class="label label-default">  Pistoletas</span></p>
+                        <p><input type="checkbox" aria-label="graiztvinis"/><span class="label label-default">  Graižtvinis šautuvas</span>
+                        </p>
+                        <p><input type="checkbox" aria-label="lygiavamzdis"/><span class="label label-default">  Lygiavamzdis šautuvas</span>
+                        </p>
+                        <p><input type="checkbox" aria-label="pneumatinis"/><span class="label label-default">  Pneumatinis šautuvas</span>
+                        </p>
+                        <p th:text="'Pasirinkite gamintoją'"/>
+                        <p>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
+                                Gamintojas
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                                <li><a th:href="${T(ginklai.Application).TYPE_GRAIZTVINIAI}">Graižtviniai šautuvai</a>
+                                </li>
+                            </ul>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="btn-group" aria-label="...">
+                            <button type="submit" class="btn btn-default">Rodyti</button>
+                        </div>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Graižtviniai šautuvai</h1>
+<table border="1">
+    <tr>
+        <th>Ginklo pavadinimas</th>
+        <th>Dėtuvės dydis</th>
+        <th>Ginklo paskirtis</th>
+        <th>Kalibras</th>
+    </tr>
+    <tr th:each = "weapon: ${weapons}">
+        <td th:text="${weapon.ginklo_pavadinimas}">pavadinimas</td>
+        <td th:text="${weapon.detuves_dydis}">dydis</td>
+        <td th:text="${weapon.ginklo_paskirtis}">paskirtis</td>
+        <td th:text="${weapon.kalibras}">kalibras</td>
+    </tr>
+</table>
+</body>
+</html>
